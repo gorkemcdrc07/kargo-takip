@@ -1,0 +1,32 @@
+﻿# OS / IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.swp
+.DS_Store
+Thumbs.db
+
+# .NET
+**/bin/
+**/obj/
+*.dbmdl
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Env / secrets
+.env
+**/.env
+frontend/.env*
+!.env.example
+
+# Misc
+*.pid

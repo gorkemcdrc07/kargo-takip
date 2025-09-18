@@ -1,0 +1,25 @@
+{
+  "name": "kargo-takip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "esbuild src/main.tsx --bundle --outfile=dist/app.js --loader:.tsx=tsx --loader:.ts=ts --servedir=dist --watch",
+    "build": "esbuild src/main.tsx --bundle --outfile=dist/app.js --loader:.tsx=tsx --loader:.ts=ts --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.2"
+  }
+}

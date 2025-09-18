@@ -1,0 +1,41 @@
+﻿services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: kargotakip
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ASPNETCORE_ENVIRONMENT: Development
+      # En yaygın 3 isim:
+      ConnectionStrings__Default: Host=db;Port=5432;Database=kargotakip;Username=app;Password=app
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=kargotakip;Username=app;Password=app
+      ConnectionStrings__Postgres: Host=db;Port=5432;Database=kargotakip;Username=app;Password=app
+      # Yedek: bazen custom okunuyor olabilir
+      POSTGRES_CONNECTION_STRING: Host=db;Port=5432;Database=kargotakip;Username=app;Password=app
+      Jwt__Issuer: "kargotakip"
+      Jwt__Audience: "kargotakip"
+      Jwt__Key: ${JWT_KEY}
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - api
+    ports:
+      - "5175:80"
+
+volumes:
+  dbdata:
